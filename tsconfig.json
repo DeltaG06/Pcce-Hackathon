@@ -1,11 +1,22 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "jsx": "react-native",
     "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".", // Set the base directory for path resolution to the project root
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      // Define aliases pointing to your SRC folders
+      "@components/*": ["./src/components/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@types/*": ["./src/types/*"]
+      // Note: We deliberately exclude the default Expo aliases (like "@/...") here 
+      // to force the use of the new @-prefixed aliases pointing to 'src'.
     }
   },
   "include": [
@@ -13,5 +24,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "src/screens/MapScreen"  ]
 }
