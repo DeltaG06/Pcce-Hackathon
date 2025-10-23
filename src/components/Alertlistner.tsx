@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Alert } from 'react-native';
-import { supabase } from '../services/supabase/client'; // Adjust this path to your client
+import { supabase } from '../../services/supabase/client'; // Adjust this path to your client
 
 /**
  * This component listens for new rows in the 'alerts' table

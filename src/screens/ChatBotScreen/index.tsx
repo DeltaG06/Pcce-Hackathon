@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 import uuid from 'react-native-uuid';
 import * as LocationExpo from 'expo-location';
-import { analyzeSymptoms } from '../../services/ai/geminiService';
-import { supabase } from '../../services/supabase/client';
-import { AnalysisResult, Location, LogEntry } from '../../types';
+import { analyzeSymptoms } from '../../../services/ai/geminiService';
+import { supabase } from '../../../services/supabase/client';
+import { AnalysisResult, Location, LogEntry } from '../../../types';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import StethoscopeIcon from '../../components/icons/StethoscopeIcon';
 import AlertIcon from '../../components/icons/AlertIcon';

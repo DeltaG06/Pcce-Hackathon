@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { supabase } from '../services/supabase/client'; // Adjust path if needed
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
+import { supabase } from '../../services/supabase/client'; // Adjust path if needed
 
 export default function StatusDisplay() {
   // --- State Variables ---
