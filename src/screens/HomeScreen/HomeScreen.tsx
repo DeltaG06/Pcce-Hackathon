@@ -1,9 +1,11 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
-import { useAuth } from '@hooks/useAuth'; // Import the hook
-import { COLORS } from '@utils/constants'; // Assuming COLORS is available
-
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { NavigationProp } from '../../navigation/types';
+// import { useAuth } from '@hooks/useAuth'; // Import the hook
+// import { COLORS } from '@utils/constants'; // Assuming COLORS is available
 const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProp>();
  
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -27,7 +29,13 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.cardText}>
             Your anonymous reports help local officials detect early outbreaks.
           </Text>
-          <Text style={styles.quickLink}>Report Now →</Text>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('ChatBotScreen');
+              }}
+            >
+              <Text style={styles.quickLink}>Report Now →</Text>
+            </Pressable>
         </View>
 
 

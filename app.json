@@ -9,12 +9,13 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_API_KEY}"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-       
-      },
+      "adaptiveIcon": {},
       "package": "com.yourcompany.communityhealthtracker",
       "config": {
         "googleMaps": {
@@ -26,8 +27,7 @@
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
-      ],
-      
+      ]
     },
     "web": {
       "output": "static",
@@ -35,6 +35,13 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow PharmaFriend to access your location to find nearby pharmacies.",
+          "locationWhenInUsePermission": "Allow PharmaFriend to access your location to find nearby pharmacies."
+        }
+      ],
       [
         "expo-splash-screen",
         {

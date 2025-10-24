@@ -1,13 +1,46 @@
-import { Tabs, router } from 'expo-router';
+// app/_layout.tsx
 import { AntDesign } from '@expo/vector-icons';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Stack, Tabs, router } from 'expo-router';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+
+export function RootLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen 
+        name="map" 
+        options={{ 
+          headerShown: true,
+          presentation: 'card',
+          title: 'Pharmacy Map'
+        }} 
+      />
+      <Stack.Screen 
+        name="pharmacy-list" 
+        options={{ 
+          headerShown: true,
+          presentation: 'card',
+          title: 'Nearby Pharmacies'
+        }} 
+      />
+      <Stack.Screen 
+        name="chatbot" 
+        options={{ 
+          presentation: 'modal',
+          headerShown: false 
+        }} 
+      />
+    </Stack>
+  );
+}
 
 export default function TabLayout() {
   return (
-    // 1. Wrap the Tabs in a View to contain the FAB
     <View style={{ flex: 1 }}>
-      
-      {/* 2. The Tabs component fills the View */}
       <Tabs screenOptions={{ 
           headerShown: false, 
           tabBarActiveTintColor: '#4CAF50',
@@ -25,7 +58,6 @@ export default function TabLayout() {
           }
       }}>
         
-        {/* All your existing tabs */}
         <Tabs.Screen
           name="index"
           options={{
@@ -33,6 +65,15 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <AntDesign name="home" color={color} size={24} />,
           }}
         />
+
+        <Tabs.Screen
+          name="pharmacies"
+          options={{
+            title: 'Pharmacies',
+            tabBarIcon: ({ color }) => <AntDesign name="medicine-box" color={color} size={24} />,
+          }}
+        />
+
         <Tabs.Screen
           name="analytics"
           options={{
@@ -56,25 +97,22 @@ export default function TabLayout() {
         />
       </Tabs>
 
-      {/* 3. The new Floating Action Button (FAB) */}
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => router.push('/chatbot')} // Navigates to the modal
+        onPress={() => router.push('/chatbot')}
       >
         <AntDesign name="message" size={26} color="#FFFFFF" />
       </TouchableOpacity>
-
     </View>
   );
 }
 
-// 4. Styles for the FAB
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     right: 30,
-    bottom: 100, // Positioned 20px above the 60px tab bar
-    backgroundColor: '#30ad5eff', // Blue accent color
+    bottom: 100,
+    backgroundColor: '#30ad5eff',
     width: 60,
     height: 60,
     borderRadius: 30,

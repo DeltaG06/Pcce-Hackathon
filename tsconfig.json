@@ -1,27 +1,33 @@
-
+{
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
-    "jsx": "react-native",
     "strict": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@screens/*": ["./src/screens/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@services/*": ["./src/services/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@types/*": ["./src/types/*"]
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ]
     }
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
+    "*/.ts",
+    "*/.tsx",
+    ".expo/types/*/.ts",
     "expo-env.d.ts",
-    "src/screens/MapScreen/**/*"
+    ".expo/types/**/*.ts"
   ]
 }
-
