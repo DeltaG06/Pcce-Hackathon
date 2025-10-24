@@ -1,25 +1,28 @@
 // src/types/map.ts
-import { Location } from './location';
+
+export interface Coordinate {
+  latitude: number;
+  longitude: number;
+}
+
+export interface MapRegion extends Coordinate {
+  latitudeDelta: number;
+  longitudeDelta: number;
+}
 
 export interface MapMarker {
   id: string;
-  coordinate: Location;
+  coordinate: Coordinate;
   title: string;
   description?: string;
   pinColor?: string;
 }
 
+// Pharmacy-specific marker type
 export interface PharmacyMarker extends MapMarker {
   name: string;
-}
-
-export interface HeatMapPoint {
-  latitude: number;
-  longitude: number;
-  weight: number;
-}
-
-export interface MapRegion extends Location {
-  latitudeDelta: number;
-  longitudeDelta: number;
+  address?: string;
+  phone?: string;
+  hours?: string;
+  rating?: number;
 }
