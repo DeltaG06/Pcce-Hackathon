@@ -1,15 +1,15 @@
-// src/screens/AnalyticsScreen/AnalyticsScreen.tsx
+// src/screens/AnalyticsScreen/AnalyticsScreen.tsx (Updated with Trend Chart)
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BlurView } from 'expo-blur';
 import React from 'react';
-import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
+import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import HeatMapComponent from '../../components/map/HeatMap';
+import MedicineChart from '../../components/MedicineChart/MedicineChart';
+import SymptomTrendChart from '../../components/SymptomTrendChart/SymptomTrendChart';
 
 // Asset import
 const gheeImage = require('../../assets/ghee.png');
-const ghaaImage = require('../../assets/ghaa.png');
-const heatMapImage = require('../../assets/heatMap.png');
 
 // Update these screen names to match YOUR actual navigation setup
 type RootStackParamList = {
@@ -41,17 +41,26 @@ const AnalyticsScreen: React.FC = () => {
         <Text style={styles.headerTitle}>Health Analytics</Text>
         <Text style={styles.subtitle}>Symptom trends and medicine demand.</Text>
 
-        {/* TrendChart Card */}
+        {/* Medicine Demand Chart */}
         <Animated.View entering={FadeInUp.delay(100)} style={styles.card}>
-          <Text style={styles.cardTitle}>Reported Symptom Trends (7 Days)</Text>
-          <BlurView intensity={30} style={styles.chartPlaceholder}>
-            <Image source={ghaaImage} style={styles.image} resizeMode="cover" />
-            <Text style={styles.overlayText}>TrendChart Component Here</Text>
-          </BlurView>
+          <MedicineChart />
+        </Animated.View>
+
+        {/* Symptom Heatmap */}
+        <Animated.View entering={FadeInUp.delay(200)} style={styles.card}>
+          <Text style={styles.cardTitle}>Symptom Heatmap</Text>
+          <View style={styles.mapContainer}>
+            <HeatMapComponent />
+          </View>
+        </Animated.View>
+
+        {/* Symptom Trend Chart */}
+        <Animated.View entering={FadeInUp.delay(300)} style={styles.card}>
+          <SymptomTrendChart />
         </Animated.View>
 
         {/* Nearby Pharmacies Card - Now clickable */}
-        <Animated.View entering={FadeInUp.delay(200)} style={styles.card}>
+        <Animated.View entering={FadeInUp.delay(400)} style={styles.card}>
           <Text style={styles.cardTitle}>Nearby Pharmacies</Text>
           <Pressable 
             style={styles.chartPlaceholder} 
@@ -63,14 +72,6 @@ const AnalyticsScreen: React.FC = () => {
               📍 Tap to view nearby pharmacies on map
             </Text>
           </Pressable>
-        </Animated.View>
-
-        {/* HeatMap Card */}
-        <Animated.View entering={FadeInUp.delay(300)} style={styles.card}>
-          <Text style={styles.cardTitle}>HeatMap</Text>
-          <BlurView intensity={40} style={styles.chartPlaceholder}>
-            <Image source={heatMapImage} style={styles.image} resizeMode="cover" />
-          </BlurView>
         </Animated.View>
       </ScrollView>
     </SafeAreaView>
@@ -137,6 +138,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderRadius: 8,
+  },
+  mapContainer: {
+    height: 300,
+    borderRadius: 12,
+    overflow: 'hidden',
   },
 });
 
